@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedAware - Health Guidance</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f5faf9;
+  color: #19343b;
+  line-height: 1.6;
+}
+
+header {
+  background: white;
+  padding: 18px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #dce9e6;
+}
+
+.logo {
+  color: #087f78;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+nav a {
+  text-decoration: none;
+  color: #19343b;
+  margin-left: 20px;
+}
+
+.hero {
+  text-align: center;
+  padding: 75px 20px;
+  background: #eaf7f4;
+}
+
+.hero h1 {
+  color: #123b46;
+  font-size: 42px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  color: #64777b;
+  font-size: 17px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 50px 20px;
+}
+
+h2 {
+  color: #123b46;
+  margin-bottom: 15px;
+}
+
+.search-box {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px #dce9e6;
+}
+
+input {
+  width: 75%;
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+button {
+  padding: 14px 20px;
+  background: #087f78;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+button:hover {
+  background: #066b65;
+}
+
+#answer {
+  display: none;
+  margin-top: 25px;
+  padding: 20px;
+  background: #eaf7f4;
+  border-radius: 10px;
+}
+
+#answer ul {
+  padding-left: 22px;
+}
+
+#answer li {
+  margin: 10px 0;
+}
+
+.topics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 15px #dce9e6;
+  cursor: pointer;
+}
+
+.card h3 {
+  color: #087f78;
+  margin-bottom: 10px;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.notice {
+  background: #fff5df;
+  padding: 20px;
+  border-radius: 10px;
+  color: #76551b;
+}
+
+footer {
+  background: #123b46;
+  color: white;
+  text-align: center;
+  padding: 25px;
+}
+
+@media(max-width:700px) {
+  .topics {
+    grid-template-columns: 1fr;
+  }
+
+  input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">✚ MedAware</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#ask">Ask Question</a>
+    <a href="#guidelines">Guidelines</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <h1>Health Guidance Made Simple</h1>
+  <p>Ask your health-related questions and explore
+  simple healthcare guidelines.</p>
+</section>
+
+<section class="container" id="ask">
+  <h2>Ask Your Health Question</h2>
+  <p>Enter your question below to get basic health guidelines.</p>
+
+  <div class="search-box">
+    <input type="text" id="question"
+    placeholder="Ask something about health...">
+
+    <button onclick="getAnswer()">
+      Get Guidelines
+    </button>
+
+    <div id="answer">
+      <h3 id="answerTitle"></h3>
+      <div id="answerContent"></div>
+    </div>
+  </div>
+</section>
+
+<section class="container" id="guidelines">
+  <h2>Health Guidelines</h2>
+
+  <div class="topics">
+
+    <div class="card" onclick="showTopic('burn')">
+      <h3>🩹 First Aid</h3>
+      <p>Basic first aid guidelines.</p>
+    </div>
+
+    <div class="card" onclick="showTopic('hygiene')">
+      <h3>🧼 Hygiene</h3>
+      <p>Personal cleanliness and safety.</p>
+    </div>
+
+    <div class="card" onclick="showTopic('nutrition')">
+      <h3>🥗 Nutrition</h3>
+      <p>Healthy eating guidelines.</p>
+    </div>
+
+    <div class="card" onclick="showTopic('hydration')">
+      <h3>💧 Hydration</h3>
+      <p>Importance of drinking water.</p>
+    </div>
+
+    <div class="card" onclick="showTopic('sleep')">
+      <h3>🌙 Sleep</h3>
+      <p>Healthy sleeping habits.</p>
+    </div>
+
+    <div class="card" onclick="showTopic('prevention')">
+      <h3>🛡️ Prevention</h3>
+      <p>Preventing common infections.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="container">
+  <div class="notice">
+    <h3>Important Medical Disclaimer</h3>
+    <p>MedAware provides general educational information.
+    It does not diagnose diseases or prescribe medicines.
+    Consult a qualified healthcare professional for
+    personal medical advice. Seek urgent medical care
+    during emergencies.</p>
+  </div>
+</section>
+
+<footer>
+  <h3>MedAware</h3>
+  <p>Health Guidance Made Simple</p>
+  <p>College Social Impact Project</p>
+</footer>
+
+<script>
+
+const guides = {
+  burn: {
+    title: "Minor Burn First Aid",
+    points: [
+      "Move away from the heat source.",
+      "Cool the burn under cool running water for 20 minutes.",
+      "Do not apply ice, toothpaste or butter.",
+      "Cover loosely with a clean, non-fluffy dressing.",
+      "Seek medical attention for serious or large burns."
+    ]
+  },
+
+  hygiene: {
+    title: "Personal Hygiene Guidelines",
+    points: [
+      "Wash hands regularly with soap and water.",
+      "Clean your hands before eating.",
+      "Maintain personal cleanliness.",
+      "Keep your surroundings clean.",
+      "Use clean drinking water."
+    ]
+  },
+
+  nutrition: {
+    title: "Healthy Nutrition Guidelines",
+    points: [
+      "Eat fruits and vegetables daily.",
+      "Include protein-rich foods in meals.",
+      "Choose whole grains where possible.",
+      "Drink sufficient safe water.",
+      "Limit excess sugar and salt."
+    ]
+  },
+
+  hydration: {
+    title: "Hydration Guidelines",
+    points: [
+      "Drink water regularly throughout the day.",
+      "Increase fluid intake during hot weather.",
+      "Eat water-rich fruits and vegetables.",
+      "Watch for dark urine and unusual thirst.",
+      "Seek medical advice for persistent symptoms."
+    ]
+  },
+
+  sleep: {
+    title: "Healthy Sleep Guidelines",
+    points: [
+      "Maintain a regular sleep schedule.",
+      "Avoid screens close to bedtime.",
+      "Keep your bedroom comfortable.",
+      "Avoid caffeine late in the day.",
+      "Consult a professional for persistent sleep problems."
+    ]
+  },
+
+  prevention: {
+    title: "Disease Prevention Guidelines",
+    points: [
+      "Wash hands regularly.",
+      "Cover your mouth when coughing or sneezing.",
+      "Keep your surroundings clean.",
+      "Avoid close contact when unwell.",
+      "Follow recommended vaccination guidance."
+    ]
+  }
+};
+
+function displayGuide(key) {
+  const guide = guides[key];
+
+  document.getElementById("answerTitle").textContent =
+    guide.title;
+
+  const list = document.createElement("ul");
+
+  guide.points.forEach(point => {
+    const li = document.createElement("li");
+    li.textContent = point;
+    list.appendChild(li);
+  });
+
+  const content = document.getElementById("answerContent");
+  content.replaceChildren(list);
+
+  document.getElementById("answer").style.display = "block";
+}
+
+function getAnswer() {
+  const question = document.getElementById("question")
+    .value.toLowerCase();
+
+  if (!question.trim()) {
+    alert("Please enter a question!");
+    return;
+  }
+
+  if (question.includes("burn")) {
+    displayGuide("burn");
+  }
+  else if (
+    question.includes("hand") ||
+    question.includes("hygiene") ||
+    question.includes("wash")
+  ) {
+    displayGuide("hygiene");
+  }
+  else if (
+    question.includes("food") ||
+    question.includes("nutrition") ||
+    question.includes("diet")
+  ) {
+    displayGuide("nutrition");
+  }
+  else if (
+    question.includes("water") ||
+    question.includes("dehydrat")
+  ) {
+    displayGuide("hydration");
+  }
+  else if (
+    question.includes("sleep") ||
+    question.includes("rest")
+  ) {
+    displayGuide("sleep");
+  }
+  else if (
+    question.includes("infection") ||
+    question.includes("prevent") ||
+    question.includes("disease")
+  ) {
+    displayGuide("prevention");
+  }
+  else {
+    document.getElementById("answerTitle").textContent =
+      "Guideline Not Found";
+
+    document.getElementById("answerContent").textContent =
+      "Try asking about first aid, hygiene, nutrition, hydration, sleep or disease prevention. For personal medical concerns, consult a healthcare professional.";
+
+    document.getElementById("answer").style.display = "block";
+  }
+}
+
+function showTopic(key) {
+  displayGuide(key);
+  document.getElementById("ask").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+</script>
+
+</body>
+</html>
